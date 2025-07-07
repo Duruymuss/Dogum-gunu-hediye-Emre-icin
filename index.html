@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>Emrecigime Doğum Günü Hediyesi</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fff0f6 0%, #ffffff 100%);
+    color: #333;
+    height: 100vh;
+    display: flex;
+  }
+
+  nav {
+    width: 180px;
+    background: #ffd6e8;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    box-shadow: 2px 0 10px rgba(255, 182, 193, 0.6);
+    z-index: 1;
+  }
+  nav button {
+    background: #ff82ab;
+    border: none;
+    margin: 10px 15px;
+    padding: 10px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 4px 6px rgba(255, 130, 171, 0.6);
+  }
+  nav button:hover, nav button.active {
+    background: #ff3d6f;
+    color: #fff;
+    box-shadow: 0 6px 10px rgba(255, 61, 111, 0.8);
+  }
+
+  main {
+    flex: 1;
+    background: #fff0f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .minecraft-block {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #ff82ab 0%, #ff3d6f 100%);
+    box-shadow:
+      inset 0 0 15px #ffbad2,
+      4px 4px 10px #d01255;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .minecraft-block .emoji {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 0 6px #ff1a52);
+  }
+
+  h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3rem;
+    margin: 0 0 15px 0;
+    color: #e91e63;
+    text-shadow: 1px 1px 4px #f8bbd0;
+  }
+
+  p, #content-text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    max-width: 600px;
+    color: #4a4a4a;
+    margin: 0;
+  }
+
+  button#action-btn {
+    margin-top: 25px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    border: none;
+    background-color: #ff3d6f;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 61, 111, 0.6);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  button#action-btn:hover {
+    background-color: #ff1a52;
+    box-shadow: 0 8px 25px rgba(255, 26, 82, 0.8);
+  }
+
+  @media (max-width: 600px) {
+    body {
+      flex-direction: column;
+      height: auto;
+    }
+    nav {
+      width: 100%;
+      flex-direction: row;
+      box-shadow: none;
+      padding: 10px 0;
+    }
+    nav button {
+      flex: 1;
+      margin: 8px 5px;
+      font-size: 1rem;
+      padding: 10px 5px;
+      border-radius: 20px;
+    }
+    main {
+      padding: 20px 15px 40px;
+    }
+    .minecraft-block {
+      width: 70px;
+      height: 70px;
+    }
+    .minecraft-block .emoji {
+      font-size: 3rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <button id="btn-iltifat" class="active" onclick="showSection('iltifat')">İltifatlar</button>
+  <button id="btn-fikralar" onclick="showSection('fikralar')">Fıkralar</button>
+  <button id="btn-dogum" onclick="showSection('dogum')">Doğum Günü Sözleri</button>
+</nav>
+
+<main>
+  <div class="minecraft-block">
+    <span class="emoji" role="img" aria-label="lale">🌷</span>
+  </div>
+  <h1>Emrecigime Doğum Günü Hediyesi</h1>
+  <p id="content-text">Hoşgeldin! Yan taraftan bir seçeneğe tıkla, sana özel tatlı sürprizler gelsin!</p>
+  <button id="action-btn" onclick="handleAction()">Başla</button>
+</main>
+
+<script>
+  const icerikler = {
+    iltifat: [
+      "Senin gibi bir oyuncu nadir bulunur, elmas gibi parlak!",
+      "Her blokta senin gibi bir kahraman olmalı.",
+      "Oyundaki en değerli şey, senin gülüşün!",
+      "Seninle birlikte oyun oynamak, en güzel macera.",
+      "Becerilerinle dünyayı fethediyorsun, harikasın!"
+    ],
+    fikralar: [
+      "Minecraft'ta tavuk neden gitmez? Çünkü kanatları var ama uçamaz! 🐔😂",
+      "Köylü neden çok çalışır? Çünkü her zaman köyüne bakmak zorunda! 🏡😄",
+      "Creeper neden kötü espri yapar? Çünkü patlaması gerekiyor! 💥🤣",
+      "Enderman neden başka yerlere gider? Çünkü evde internet çekmiyor! 📶👾",
+      "Zombi neden müzik dinler? Çünkü ritme ayak uydurmak ister! 🧟‍♂️🎶"
+    ],
+    dogum: [
+      "Doğum günün kutlu olsun! Yeni yaşın elmas kadar parlak olsun!",
+      "Bugün senin günün, haydi yeni maceralara atıl!",
+      "Sağlık, mutluluk ve bolca crafting malzemesi diliyorum!",
+      "Doğum günün Minecraft dünyasının en güzel yapılsın!",
+      "Yeni yaşında oyun dünyan kadar renkli ve eğlenceli olsun!"
+    ]
+  };
+
+  let aktifBolum = "iltifat";
+
+  function showSection(bolum) {
+    aktifBolum = bolum;
+    document.getElementById("content-text").innerText = icerikler[bolum][0];
+    document.getElementById("action-btn").innerText = "Yeni " + (bolum === "dogum" ? "Söz" : bolum === "fikralar" ? "Fıkra" : "İltifat") + " Getir";
+    document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
+    document.getElementById("btn-" + bolum).classList.add("active");
+  }
+
+  function handleAction() {
+    const liste = icerikler[aktifBolum];
+    const rastgele = Math.floor(Math.random() * liste.length);
+    document.getElementById("content-text").innerText = liste[rastgele];
+  }
+
+  window.onload = () => {
+    showSection("iltifat");
+  }
+</script>
+
+</body>
+</html>
